@@ -5,7 +5,7 @@ createdAt: 2022-01-08
 order: 10
 ---
 
-<p className="lead">
+<p class="lead">
 This article is also available on <a href="https://medium.com/@valerih333/building-an-app-around-vue-3-composition-api-f3595a7e39f2" class="!underline">Medium</a>.
 </p>
 

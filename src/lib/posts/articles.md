@@ -6,7 +6,7 @@ updatedAt: 2022-05-11
 order: 1
 ---
 
-<p className="lead">
+<p class="lead">
 This is a collection of selected books, articles, and talks I got a lot from, and recommend them to you. 
 The list is in no particular order and is subject to update in the future!
 </p>
