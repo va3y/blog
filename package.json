@@ -27,6 +27,7 @@
   },
   "type": "module",
   "dependencies": {
+    "dayjs": "^1.11.2",
     "just-throttle": "^4.0.1",
     "svelte-preprocess": "^4.9.8"
   }
