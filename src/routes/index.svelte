@@ -1,8 +1,8 @@
 <script context="module">
-	import fetchPosts from '$lib/assets/js/fetchPosts';
-
-	export const load = async () => {
-		const { posts } = await fetchPosts({});
+	export const load = async ({ fetch }) => {
+		console.log();
+		const postRes = await fetch('/api/posts.json');
+		const { posts } = await postRes.json();
 
 		return {
 			props: {

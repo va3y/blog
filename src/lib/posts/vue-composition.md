@@ -493,7 +493,7 @@ export default function ({
 
 ### Volar extension
 
-[Volar](https://github.com/johnsoncodehk/volar) came as a replacement of Vetur as a Vue extension for VsCode and WebStorm. Now it's officially recommended for usage in Vue 3. For me, it's main feature is: **typing props and emits out of the box**. Which works great, especially if you use Typescript.
+[Volar](https://github.com/johnsoncodehk/volar/) came as a replacement of Vetur as a Vue extension for VsCode and WebStorm. Now it's officially recommended for usage in Vue 3. For me, it's main feature is: **typing props and emits out of the box**. Which works great, especially if you use Typescript.
 
 Right now, I would always go for Volar in Vue 3 projects. For Vue 2, Volar still works better for me, as less tweaking is needed for it to work. 
 
