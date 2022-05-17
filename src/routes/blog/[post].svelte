@@ -20,15 +20,21 @@
 </script>
 
 <script>
+	import dayjs from 'dayjs';
+
 	export let PostContent;
 	export let meta;
 
-	const { title, excerpt, date, updated, coverImage, coverWidth, coverHeight } = meta;
+	const { title, excerpt, date, updated, coverImage, coverWidth, coverHeight, createdAt } = meta;
+
+	const formatDate = (date) => {
+		return dayjs(date).format('MMM D, YYYY');
+	};
 </script>
 
 <svelte:head>
 	<!-- Be sure to add your image files and un-comment the lines below -->
-	<title>{title}</title>
+	<title>{title} | Va3y Blog</title>
 	<meta data-key="description" name="description" content={excerpt} />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={title} />
@@ -42,25 +48,18 @@
 </svelte:head>
 
 <article class="post">
-	<!-- You might want to add an alt frontmatter attribute. If not, leaving alt blank here works, too. -->
-	<img
-		class="cover-image"
-		src={coverImage}
-		alt=""
-		style="aspect-ratio: {coverWidth} / {coverHeight};"
-		width={coverWidth}
-		height={coverHeight}
-	/>
-
-	<h1>{title}</h1>
-
-	<div class="meta">
-		<b>Published:</b>
-		{date}
-		<br />
-		<b>Updated:</b>
-		{updated}
+	<div />
+	<div class="lg:pr-8">
+		<div class="mx-auto max-w-prose text-sm xl:text-base">
+			<div class="justify-between items-start mb-8">
+				<h1 class="text-4xl lg:text-6xl font-bold mt-4 max-w-xl">
+					{title}
+				</h1>
+				<div class="mt-4 text-2xl">{formatDate(createdAt)}</div>
+			</div>
+			<div class="prose prose-sm md:prose-md lg:prose-lg mx-auto w-full overflow-hidden">
+				<svelte:component this={PostContent} />
+			</div>
+		</div>
 	</div>
-
-	<svelte:component this={PostContent} />
 </article>

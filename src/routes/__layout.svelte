@@ -16,20 +16,16 @@
 <script>
 	import '$lib/assets/css/app.css';
 	import { currentPage, isMenuOpen } from '$lib/assets/js/store';
-	import { navItems } from '$lib/config';
 	import { prefetch } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import ArrowLeft from '$lib/components/svg/ArrowLeft.svelte';
+	import DarkmodeToggle from '$lib/components/DarkmodeToggle.svelte';
 
 	export let path;
 
 	$: currentPage.set(path);
-
-	onMount(() => {
-		navItems.forEach((item) => prefetch(item.route));
-	});
 </script>
 
 <div class="w-full h-full min-h-screen min-w-full">
@@ -42,7 +38,7 @@
 			</a>
 		{/if}
 
-		<!-- <DarkmodeToggle class="ml-auto" /> -->
+		<DarkmodeToggle class="ml-auto" />
 	</div>
 
 	<main
