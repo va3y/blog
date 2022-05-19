@@ -35,10 +35,9 @@
 			Hi, I'm Valery
 		</h1>
 		<p class="text-stone-700 dark:text-stone-300">
-			I do React at work, love to develop with
-			<Link in-new-tab href="https://github.com/va3y/blog">Vue</Link>, know very little Angular,
-			enthusiastic about Svelte, betting on Solid, sometimes perplexed about web components, and
-			still learning new things about HTML. Pro&#8209;performance and anti js bloat.
+			I do React at work, love to develop with Vue, know very little Angular, enthusiastic about
+			Svelte, betting on Solid, sometimes perplexed about web components, and still learning new
+			things about HTML. Pro&#8209;performance and anti js bloat.
 		</p>
 		<br />
 		<p>

@@ -63,7 +63,7 @@ setup() {
 
 Vue 3.2 introduced `<script setup>` syntax, which is just a syntactic sugar of `setup()` function, making the code more terse. From now on, we'll use `script setup` syntax, as it is the most current one.
 
-```vue
+```html
 <script setup>
 import { ref, computed } from 'vue'
 
@@ -79,7 +79,7 @@ Here's, in my opinion, a big idea. Instead of keeping the features separated usi
 
  
 
-```vue
+```html
 // Component.vue
 <script setup>
 import useFeatureA from "./featureA";
@@ -155,7 +155,7 @@ And Vue will register lifecycle hooks even inside vuex! (The question is: should
 
 With this flexibility and power, it's important to understand how and when these hooks are registered. Take a look at the snippet below: Which `onUpdated` hooks will be registered?
 
-```vue
+```html
 <script setup lang="ts">
 import { ref, onUpdated } from "vue";
 
@@ -214,7 +214,7 @@ Conclusion: declare lifecycle methods in a way that they are executed on setup i
 
 We often need to use `async/await` in our logic. The naive approach is to try this: 
 
-```vue
+```html
 <script setup lang="ts">
 import { myAsyncFunction } from './myAsyncFunction.js
 const data = await myAsyncFunction();
@@ -231,7 +231,7 @@ However, if we [try](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cCBs
 
 To render the component we can use `.then`  syntax: 
 
-```vue
+```html
 <script setup>
 import { ref } from "vue";
 import { myAsyncFunction } from './myAsyncFunction.js
@@ -259,7 +259,7 @@ Cons: the syntax is a bit dated, and can get clunky when having multiple `.then`
 
 We can retain the `async/await` syntax if we wrap this logic inside an async IIFE:
 
-```vue
+```html
 <script setup>
 import { ref } from "vue";
 import { myAsyncFunction } from './myAsyncFunction.js'
@@ -283,7 +283,7 @@ Cons: Arguably looks less clean. An extra ref is still needed
 
 If we wrap this component with `<Suspense>` in parent component, we can freely use `async/await` in setup as in the naive approach!
 
-```vue
+```html
 // Parent.vue
 <script setup lang="ts">
 import { Child } from './Child.vue
@@ -322,7 +322,7 @@ Cons: a package.json dependency
 
 [VueUse](https://vueuse.org/functions.html) library relies on the new functionality Composition API unlocked, giving a variety of helper functions. Same as we wrote `useFeatureA` and `useFeatureB` , this library lets you import pre-made utility functions, written in a composable style. Here's a snippet of how it works:
 
-```vue
+```html
 <script setup lang="ts">
 import {
   useStorage,
@@ -354,7 +354,7 @@ I cannot recommend you this library enough, and in my opinion it's a must-have f
 
 Here's how this library addresses the async call execution mentioned previously:
 
-```vue
+```html
 <script setup>
 import { useAsyncState } from "@vueuse/core";
 import { myAsyncFunction } from './myAsyncFunction.js';
@@ -392,7 +392,7 @@ Link: [useAsyncState doc](https://vueuse.org/core/useAsyncState/).
 
 `script setup`  brought a quicker way of typing props and emits in Vue components:
 
-```vue
+```html
 <script setup lang="ts">
 import { PropType } from "vue";
 

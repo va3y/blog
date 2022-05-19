@@ -48,21 +48,16 @@
 	<!-- <meta name="twitter:image" content="https://yourdomain.com/image_path" /> -->
 </svelte:head>
 
-<article class="post">
-	<div />
-	<div class="lg:pr-8">
-		<div class="mx-auto max-w-prose text-sm xl:text-base">
-			<div class="justify-between items-start mb-8">
-				<h1 class="text-4xl lg:text-6xl font-bold mt-4 max-w-xl">
-					{title}
-				</h1>
-				<div class="mt-4 text-2xl">{formatDate(createdAt)}</div>
-			</div>
-			<div
-				class="prose prose-sm md:prose-md lg:prose-lg mx-auto w-full overflow-hidden dark:prose-invert"
-			>
-				<svelte:component this={PostContent} />
-			</div>
-		</div>
+<article class="lg:pr-8 mb-14 mx-auto max-w-prose text-sm xl:text-base">
+	<div class="justify-between items-start mb-8">
+		<h1 class="text-4xl lg:text-6xl font-bold mt-4 max-w-xl">
+			{title}
+		</h1>
+		<div class="mt-4 text-2xl">{formatDate(createdAt)}</div>
+	</div>
+	<div
+		class="prose prose-sm md:prose-md lg:prose-lg mx-auto w-full overflow-hidden dark:prose-invert"
+	>
+		<svelte:component this={PostContent} />
 	</div>
 </article>

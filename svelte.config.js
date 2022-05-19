@@ -11,20 +11,15 @@ const config = {
 
 	preprocess: [
 		preprocess({
-			scss: {
-				// Ensures Sass variables are always available inside component <style> blocks as vars.$variableDefinedInFile
-			},
 			postcss: true,
 			defaults: {
 				style: 'postcss'
 			}
 		}),
 		mdsvex({
-			// The default mdsvex extension is .svx; this overrides that.
 			extensions: ['.md'],
-
-			// Adds IDs to headings, and anchor links to those IDs. Note: must stay in this order to work.
-			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+			highlight: {}
 		})
 	],
 
@@ -32,15 +27,6 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			default: true
-		},
-
-		// Allows reading from files in the root directory. Necessary for loading the README on the homepage, but nothing else.
-		vite: {
-			server: {
-				fs: {
-					allow: ['.']
-				}
-			}
 		}
 	}
 };
