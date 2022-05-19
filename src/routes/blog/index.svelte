@@ -3,11 +3,8 @@
 		const postRes = await fetch(`/api/posts.json`);
 		const { posts } = await postRes.json();
 
-		const totalRes = await fetch(`/api/posts/count.json`);
-		const { total } = await totalRes.json();
-
 		return {
-			props: { posts, total }
+			props: { posts }
 		};
 	};
 </script>

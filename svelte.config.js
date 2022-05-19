@@ -13,6 +13,10 @@ const config = {
 		preprocess({
 			scss: {
 				// Ensures Sass variables are always available inside component <style> blocks as vars.$variableDefinedInFile
+			},
+			postcss: true,
+			defaults: {
+				style: 'postcss'
 			}
 		}),
 		mdsvex({

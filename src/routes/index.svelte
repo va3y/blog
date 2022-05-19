@@ -1,6 +1,5 @@
 <script context="module">
 	export const load = async ({ fetch }) => {
-		console.log();
 		const postRes = await fetch('/api/posts.json');
 		const { posts } = await postRes.json();
 
@@ -23,9 +22,18 @@
 	export let posts;
 </script>
 
-<div class="lg:text-lg">
+<svelte:head>
+	{#each posts as article}
+		<link rel="prefetch" href="/blog/{article.slug}" />
+	{/each}
+	<title>Home | Va3y Blog</title>
+</svelte:head>
+
+<div class="lg:text-lg mt-12 md:mt-0">
 	<div class="max-w-xl mt-4">
-		<h1 class="text-rose-600 dark:text-rose-700 pb-6 text-6xl font-bold">Hi, I'm Valery</h1>
+		<h1 class="text-rose-600 dark:text-rose-700 pb-6 text-6xl font-bold w-72 md:w-auto">
+			Hi, I'm Valery
+		</h1>
 		<p class="text-stone-700 dark:text-stone-300">
 			I do React at work, love to develop with
 			<Link in-new-tab href="https://github.com/va3y/blog">Vue</Link>, know very little Angular,
@@ -48,19 +56,19 @@
 				class="block transition-all duration-500 bg-size-200 bg-left-top hover:bg-center rounded pl-4 bg-gradient-to-br dark:from-rose-500 from-rose-300 dark:to-cyan-400 to-cyan-300 hover:from-rose-300 dark:from-rose-400 shadow-lg shadow-stone-300 dark:shadow-stone-900 break-inside-avoid mb-4 relative"
 			>
 				<Link
-					class="p-8 pt-6 w-full h-full block flex flex-col dark:bg-stone-900 bg-stone-200 bg-opacity-100"
+					class="px-6 md:px-8 py-6 w-full h-full block flex flex-col dark:bg-stone-900 bg-stone-200 bg-opacity-100 hover:no-underline dark:!text-stone-300"
 					href="/blog/{article.slug}"
 				>
 					<div class="font-bold mb-4 max-w-sm pr-14">
 						{article.title}
 					</div>
 					{#if article.description}
-						<div class="mt-2" v-if="article.description">
+						<div class="mt-2 text-stone-700 dark:text-stone-300">
 							{article.description} <br />
 						</div>
 					{/if}
 
-					<div class="mt-2">
+					<div class="mt-2 text-stone-700 dark:text-stone-300">
 						{#if !article.updatedAt}
 							{formatDate(article.createdAt)}
 						{/if}
@@ -73,7 +81,3 @@
 		{/each}
 	</ul>
 </div>
-
-<svelte:head>
-	<title>Home | Va3y Blog</title>
-</svelte:head>

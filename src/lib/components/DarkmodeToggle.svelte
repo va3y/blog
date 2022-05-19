@@ -3,47 +3,51 @@
 	import LightBulbIcon from './svg/LightBulbIcon.svelte';
 	import MoonIcon from './svg/MoonIcon.svelte';
 	const STORAGE_KEY = 'theme';
-	const DARK_PREFERENCE = '(prefers-color-scheme: dark)';
 
-	const THEMES = {
-		DARK: 'dark',
-		LIGHT: 'light'
-	};
-	let currentTheme;
-
-	const prefersDarkThemes = () => window.matchMedia(DARK_PREFERENCE).matches;
+	let theme;
 
 	const applyTheme = () => {
-		const preferredTheme = prefersDarkThemes() ? THEMES.DARK : THEMES.LIGHT;
-
-		currentTheme = localStorage.getItem(STORAGE_KEY) ?? preferredTheme;
-
-		if (currentTheme === THEMES.DARK) {
-			document.documentElement.classList.remove(THEMES.LIGHT);
-			document.documentElement.classList.add(THEMES.DARK);
+		const currentTheme =
+			localStorage.getItem(STORAGE_KEY) ||
+			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		theme = currentTheme;
+		if (currentTheme === 'dark') {
+			document.documentElement.classList.remove('light');
+			document.documentElement.classList.add('dark');
 		} else {
-			document.documentElement.classList.remove(THEMES.DARK);
-			document.documentElement.classList.add(THEMES.LIGHT);
+			document.documentElement.classList.remove('dark');
+			document.documentElement.classList.add('light');
 		}
 	};
 
 	const toggleTheme = () => {
-		const stored = localStorage.getItem(STORAGE_KEY);
-
-		if (stored) {
-			localStorage.removeItem(STORAGE_KEY);
-		} else {
-			localStorage.setItem(STORAGE_KEY, prefersDarkThemes() ? THEMES.LIGHT : THEMES.DARK);
-		}
-
+		const newTheme = localStorage.getItem(STORAGE_KEY) === 'dark' ? 'light' : 'dark';
+		localStorage.setItem(STORAGE_KEY, newTheme);
 		applyTheme();
 	};
 
 	onMount(() => {
 		applyTheme();
-		window.matchMedia(DARK_PREFERENCE).addEventListener('change', applyTheme);
 	});
 </script>
+
+<svelte:head>
+	<script>
+		const currentTheme =
+			localStorage.getItem('theme') ??
+			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+		if (currentTheme === 'dark') {
+			document.documentElement.classList.remove('light');
+			document.documentElement.classList.add('dark');
+			localStorage.setItem('theme', 'dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+			document.documentElement.classList.add('light');
+			localStorage.setItem('theme', 'light');
+		}
+	</script>
+</svelte:head>
 
 <template>
 	<button
@@ -51,7 +55,7 @@
 		on:click={toggleTheme}
 		title="Light/dark mode toggle"
 	>
-		<MoonIcon class="{currentTheme === THEMES.LIGHT ? '' : 'hidden'} w-8 h-8" />
-		<LightBulbIcon class="{currentTheme === THEMES.DARK ? '' : 'hidden'} w-8 h-8" />
+		<MoonIcon class="{theme === 'light' ? '' : 'hidden'} w-8 h-8" />
+		<LightBulbIcon class="{theme === 'dark' ? '' : 'hidden'} w-8 h-8" />
 	</button>
 </template>

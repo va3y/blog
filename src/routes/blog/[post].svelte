@@ -21,6 +21,7 @@
 
 <script>
 	import dayjs from 'dayjs';
+	import '$lib/assets/css/one-dark.css';
 
 	export let PostContent;
 	export let meta;
@@ -57,7 +58,9 @@
 				</h1>
 				<div class="mt-4 text-2xl">{formatDate(createdAt)}</div>
 			</div>
-			<div class="prose prose-sm md:prose-md lg:prose-lg mx-auto w-full overflow-hidden">
+			<div
+				class="prose prose-sm md:prose-md lg:prose-lg mx-auto w-full overflow-hidden dark:prose-invert"
+			>
 				<svelte:component this={PostContent} />
 			</div>
 		</div>

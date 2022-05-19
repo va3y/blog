@@ -1,44 +1,29 @@
 <script context="module">
-	export const load = async ({ url }) => {
-		/**
-		 * This fetch call is not used in this file, but the route won't be pre-rendered
-		 * and routed properly unless it's called inside a `load` function. ¯\_(ツ)_/¯
-		 * */
-
-		return {
-			props: {
-				path: url.pathname
-			}
-		};
-	};
 </script>
 
 <script>
 	import '$lib/assets/css/app.css';
-	import { currentPage, isMenuOpen } from '$lib/assets/js/store';
-	import { prefetch } from '$app/navigation';
-	import { onMount } from 'svelte';
+	import { currentPage } from '$lib/assets/js/store';
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import ArrowLeft from '$lib/components/svg/ArrowLeft.svelte';
 	import DarkmodeToggle from '$lib/components/DarkmodeToggle.svelte';
-
-	export let path;
-
-	$: currentPage.set(path);
 </script>
 
-<div class="w-full h-full min-h-screen min-w-full">
+<div class="w-full h-full min-h-screen min-w-full relative">
 	<div
-		class="flex w-full justify-between items-center py-4 px-6 sticky bg-stone-400 dark:bg-stone-900 lg:bg-transparent lg:dark:bg-transparent z-10 bg-opacity-50 backdrop-filter backdrop-blur-md md:backdrop-blur-0 top-0"
+		class="flex w-full justify-between items-center py-4 px-6  {$page.url.pathname !== '/' &&
+			'bg-stone-400 dark:bg-stone-900 backdrop-filter backdrop-blur-md sticky'} lg:bg-transparent lg:dark:bg-transparent z-10 bg-opacity-50  lg:backdrop-blur-0 top-0"
 	>
 		{#if $page.url.pathname !== '/'}
-			<a href="/" class="font-semibold block flex items-center">
+			<a href="/" class="font-semibold block flex items-center text-rose-600">
 				<ArrowLeft class="h-6 mr-2 aspect-square" /> Go back
 			</a>
 		{/if}
 
-		<DarkmodeToggle class="ml-auto" />
+		<DarkmodeToggle
+			class="ml-auto {$page.url.pathname === '/' && 'absolute top-4 right-4 md:static'}"
+		/>
 	</div>
 
 	<main
@@ -51,3 +36,18 @@
 		<slot />
 	</main>
 </div>
+
+<style global lang="postcss">
+	body {
+		@apply bg-stone-100 dark:bg-stone-800 dark:text-stone-300 text-stone-800 transition-colors antialiased 
+    selection:bg-rose-300 dark:selection:bg-rose-900;
+	}
+
+	.prose table {
+		@apply border-collapse;
+	}
+
+	.prose a {
+		@apply text-rose-600 !important;
+	}
+</style>

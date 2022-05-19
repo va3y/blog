@@ -1233,6 +1233,11 @@ path-parse@^1.0.7:
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
+perfect-dark-mode@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/perfect-dark-mode/-/perfect-dark-mode-1.0.0.tgz#829597f77505128e11a6aea7e82bed4259be6dca"
+  integrity sha512-NmGMw9TeNvWCXQ5DC2hYTolXA3R2b/Qk2iuflJcRbCxXe0SYeeRdmSJ0nz48PK9oTeS4wRXFjY/G4uOXMKD72Q==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/picocolors/-/picocolors-1.0.0.tgz"
